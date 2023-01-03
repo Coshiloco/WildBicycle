@@ -13,7 +13,9 @@
 
 
     <color name="black_trans">#9F000000</color>
-
+    <color name="beutiful_black">#140a1d</color>
+    <color name="pinki">#f8c7ed</color>
+    <color name="azul_chillon">#009aff</color>
 
     <color name="pastel_yellow">#f9eeb3</color>
     <color name="orange">#FFC107</color>
