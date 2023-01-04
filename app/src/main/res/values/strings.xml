@@ -16,4 +16,6 @@
 
     <string name="introducir_email">Introduce tu email</string>
     <string name="introducir_contraseña">Introduce tu contraseña</string>
+
+    <string name="obligatorio">Obligatorio*</string>
 </resources>

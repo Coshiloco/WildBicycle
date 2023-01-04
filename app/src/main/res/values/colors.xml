@@ -17,6 +17,34 @@
     <color name="pinki">#f8c7ed</color>
     <color name="azul_chillon">#009aff</color>
 
+    <color name="primary_color_one">#FFE1AA</color>
+    <color name="primary_color_two">#D4AF6A</color>
+    <color name="primary_color_three">#AA8239</color>
+    <color name="primary_color_four">#805A15</color>
+    <color name="primary_color_five">#553700</color>
+
+    <color name="secondary_color_one">#FFEFAA</color>
+    <color name="secondary_color_two">#D4C06A</color>
+    <color name="secondary_color_three">#AA9439</color>
+    <color name="secondary_color_four">#806B15</color>
+    <color name="secondary_color_five">#554500</color>
+
+
+    <color name="primaryColor">#eecc02</color>
+    <color name="primaryLightColor">#ffff50</color>
+    <color name="primaryDarkColor">#b79c00</color>
+    <color name="secondaryColor">#830b0b</color>
+    <color name="secondaryLightColor">#b94232</color>
+    <color name="secondaryDarkColor">#510000</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#ffffff</color>
+
+    <color name="secondary_color_six">#FFCDAA</color>
+    <color name="secondary_color_seven">#D4966A</color>
+    <color name="secondary_color_eight">#AA6839</color>
+    <color name="secondary_color_nine">#804115</color>
+    <color name="secondary_color_ten">#552300</color>
+
     <color name="pastel_yellow">#f9eeb3</color>
     <color name="orange">#FFC107</color>
     <color name="orange_dark">#c7980c</color>

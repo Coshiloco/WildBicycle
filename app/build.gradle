@@ -4,6 +4,7 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+
 android {
     namespace 'com.exmaple.wildbicycle'
     compileSdk 33
