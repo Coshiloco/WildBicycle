@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor"
+    android:background="@color/prueba"
     android:orientation="vertical"
     tools:context=".ui.login.LoginFragment">
 
@@ -62,6 +62,7 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/iniciarSesionBoton"
         style="@style/Widget.Material3.Button.ElevatedButton"
@@ -72,7 +73,23 @@
         app:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/marcoContraseña" />
+        app:layout_constraintTop_toBottomOf="@+id/marcoContraseña"
+        app:layout_constraintVertical_bias="0.339" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cambiarContraseñaBoton"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/olvidado_contraseña"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/secondaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iniciarSesionBoton"
+        app:layout_constraintVertical_bias="0.252" />
 </androidx.constraintlayout.widget.ConstraintLayout>
