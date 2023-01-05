@@ -16,6 +16,7 @@
 
     <string name="introducir_email">Introduce tu email</string>
     <string name="introducir_contraseña">Introduce tu contraseña</string>
+    <string name="iniciarSesion">INICIAR SESION</string>
 
     <string name="obligatorio">Obligatorio*</string>
 </resources>

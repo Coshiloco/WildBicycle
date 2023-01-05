@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryColor"
+    android:orientation="vertical"
     tools:context=".ui.login.LoginFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/marcoEmail"
+        android:id="@+id/IntroducirEmail"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,8 +18,8 @@
         android:layout_marginEnd="32dp"
         android:hint="@string/introducir_email"
         app:counterEnabled="true"
-        app:endIconMode="clear_text"
         app:counterTextColor="@color/secondaryColor"
+        app:endIconMode="clear_text"
         app:errorEnabled="true"
         app:errorIconDrawable="@drawable/ic_error"
         app:helperText="@string/obligatorio"
@@ -29,10 +30,9 @@
         app:startIconDrawable="@drawable/ic_mail_outline">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/IntroducirEmail"
-            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -45,9 +45,9 @@
         android:layout_marginEnd="32dp"
         android:hint="@string/introducir_contraseña"
         app:counterEnabled="true"
+        app:counterTextColor="@color/secondaryColor"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
-        app:counterTextColor="@color/secondaryColor"
         app:helperText="@string/obligatorio"
         app:helperTextTextColor="@color/secondaryColor"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,10 +57,22 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/IntroducirContraseña"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/iniciarSesionBoton"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/iniciarSesion"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/marcoContraseña" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
