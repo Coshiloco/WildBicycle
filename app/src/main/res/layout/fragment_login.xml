@@ -9,7 +9,7 @@
     tools:context=".ui.login.LoginFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/IntroducirEmail"
+        android:id="@+id/fragment_login_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/marcoContraseña"
+        android:id="@+id/fragment_login_password"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,48 +64,44 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/iniciarSesionBoton"
+        android:id="@+id/fragment_login_iniciar_sesion"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
         android:text="@string/iniciarSesion"
         android:textColor="@color/white"
         app:backgroundTint="@color/green"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/marcoContraseña"
-        app:layout_constraintVertical_bias="0.188" />
-
+        app:layout_constraintTop_toBottomOf="@+id/fragment_login_password" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/cambiarContraseñaBoton"
+        android:id="@+id/fragment_login_cambiar_password"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:text="@string/olvidado_contraseña"
         android:textColor="@color/white"
         app:backgroundTint="@color/secondaryColor"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iniciarSesionBoton"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_login_iniciar_sesion_google" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/inciarSesionGoogleBoton"
+        android:id="@+id/fragment_login_iniciar_sesion_google"
         style="@style/Widget.Material3.Button.OutlinedButton.Icon"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
         android:text="@string/iniciar_sesion_con_google"
         android:textColor="@color/black_trans"
         app:icon="@drawable/icons8_google"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cambiarContraseñaBoton"
-        app:layout_constraintVertical_bias="0.357" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_login_iniciar_sesion" />
 </androidx.constraintlayout.widget.ConstraintLayout>
