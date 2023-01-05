@@ -76,7 +76,8 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marcoContraseña"
-        app:layout_constraintVertical_bias="0.339" />
+        app:layout_constraintVertical_bias="0.188" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/cambiarContraseñaBoton"
@@ -91,5 +92,20 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iniciarSesionBoton"
-        app:layout_constraintVertical_bias="0.252" />
+        app:layout_constraintVertical_bias="0.166" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/inciarSesionGoogleBoton"
+        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/iniciar_sesion_con_google"
+        android:textColor="@color/black_trans"
+        app:icon="@drawable/icons8_google"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cambiarContraseñaBoton"
+        app:layout_constraintVertical_bias="0.357" />
 </androidx.constraintlayout.widget.ConstraintLayout>

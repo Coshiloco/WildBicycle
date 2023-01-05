@@ -13,12 +13,16 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val database: DataSource
-    ) : ViewModel() {
+) : ViewModel() {
     // TODO: Implement the ViewModel
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is the login fragment"
     }
 
-    val text : LiveData<String> = _text
+
+
+
+
+    val text: LiveData<String> = _text
 }
