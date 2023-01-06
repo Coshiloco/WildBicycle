@@ -1,6 +1,7 @@
 package com.exmaple.wildbicycle.di
 
 import com.exmaple.wildbicycle.database.DataSource
+import com.exmaple.wildbicycle.user.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -22,6 +23,10 @@ object ApplicationModule {
 
     @Provides
     fun provideFirebaseAuth(): FirebaseAuth = Firebase.auth
+
+
+    @Provides
+    fun provideUser(auth: FirebaseAuth): User = User(auth)
 
 
     @Provides

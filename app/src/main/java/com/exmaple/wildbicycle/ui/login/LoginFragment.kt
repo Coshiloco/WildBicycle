@@ -11,7 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.exmaple.wildbicycle.R
 import com.exmaple.wildbicycle.databinding.FragmentLoginBinding
+import com.exmaple.wildbicycle.user.User
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -31,8 +33,13 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initialUserExistsCheck()
         setListeners()
         setObservers()
+    }
+
+    private fun initialUserExistsCheck() = with(viewModel) {
+        isCurrentUser()
     }
 
     private fun setListeners() = with(binding) {
@@ -50,8 +57,8 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun setObservers() {
-        viewModel.navigate.observe(viewLifecycleOwner) {
+    private fun setObservers() = with(viewModel) {
+        navigate.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { eventoLogin ->
                 when (eventoLogin) {
                     LoginViewModel.Navigate.Home -> LoginFragmentDirections.actionNavLoginToHomeFragment()
@@ -66,15 +73,29 @@ class LoginFragment : Fragment() {
                 }
             }
         }
-        viewModel.errorMessage.observe(viewLifecycleOwner) {
+        errorMessage.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { mensajeError ->
                 Toast.makeText(requireContext(), mensajeError, Toast.LENGTH_SHORT).show()
             }
         }
-        viewModel.register.observe(viewLifecycleOwner) {
-            it.getContentIfNotHandled()?.let {
-                eventoRegistro ->
-                when(eventoRegistro) {
+        register.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { eventoRegistro ->
+                when (eventoRegistro) {
+                    LoginViewModel.Navigate.Home -> LoginFragmentDirections.actionNavLoginToHomeFragment()
+                        .let {
+                            findNavController().navigate(it)
+                        }
+                    LoginViewModel.Navigate.GoBack -> Toast.makeText(
+                        requireContext(),
+                        "Error",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+        isCurrentUser.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { eventoUsuarioexistente ->
+                when (eventoUsuarioexistente) {
                     LoginViewModel.Navigate.Home -> LoginFragmentDirections.actionNavLoginToHomeFragment()
                         .let {
                             findNavController().navigate(it)
