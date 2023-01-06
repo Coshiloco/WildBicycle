@@ -78,11 +78,25 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_login_password" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/fragment_login_registrarse"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/registro"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_login_iniciar_sesion" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_login_cambiar_password"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="48dp"
         android:text="@string/olvidado_contraseña"
         android:textColor="@color/white"
         app:backgroundTint="@color/secondaryColor"
@@ -96,12 +110,12 @@
         style="@style/Widget.Material3.Button.OutlinedButton.Icon"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="36dp"
         android:text="@string/iniciar_sesion_con_google"
         android:textColor="@color/black_trans"
         app:icon="@drawable/icons8_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_login_iniciar_sesion" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_login_registrarse" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,11 @@ class LoginViewModel @Inject constructor(
     val navigate: LiveData<Event<Navigate>> = _navigate
 
 
+    private var _register = MutableLiveData<Event<Navigate>>()
+    val register: LiveData<Event<Navigate>> = _register
+
+
+
     private var _errorMessage = MutableLiveData<Event<String>>()
     val errorMessage: LiveData<Event<String>> = _errorMessage
 
@@ -28,6 +33,16 @@ class LoginViewModel @Inject constructor(
         database.login(email, password) {
             if (it) {
                 _navigate.postValue(Event(Navigate.Home))
+            } else {
+                _errorMessage.postValue(Event("Error en algun campo"))
+            }
+        }
+    }
+
+    fun Registrarse (email: String, password: String) {
+        database.registerUser(email, password) {
+            if (it) {
+                _register.postValue(Event(Navigate.Home))
             } else {
                 _errorMessage.postValue(Event("Error en algun campo"))
             }

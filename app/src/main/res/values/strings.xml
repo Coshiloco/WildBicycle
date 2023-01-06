@@ -19,7 +19,7 @@
     <string name="iniciarSesion">INICIAR SESION</string>
     <string name="olvidado_contraseña">CAMBIAR CONTRASEÑA EN CASO DE QUE LA HAYAS OLVIDADO</string>
     <string name="iniciar_sesion_con_google">INICIAR SESION CON GOOGLE</string>
-
+    <string name="registro">REGISTRARSE POR PRIMERA VEZ</string>
 
     <string name="obligatorio">Obligatorio*</string>
 </resources>

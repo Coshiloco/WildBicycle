@@ -42,6 +42,12 @@ class LoginFragment : Fragment() {
                 fragmentLoginPassword.editText?.text.toString()
             )
         }
+        fragmentLoginRegistrarse.setOnClickListener {
+            viewModel.Registrarse(
+                fragmentLoginEmail.editText?.text.toString(),
+                fragmentLoginPassword.editText?.text.toString()
+            )
+        }
     }
 
     private fun setObservers() {
@@ -63,6 +69,22 @@ class LoginFragment : Fragment() {
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { mensajeError ->
                 Toast.makeText(requireContext(), mensajeError, Toast.LENGTH_SHORT).show()
+            }
+        }
+        viewModel.register.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let {
+                eventoRegistro ->
+                when(eventoRegistro) {
+                    LoginViewModel.Navigate.Home -> LoginFragmentDirections.actionNavLoginToHomeFragment()
+                        .let {
+                            findNavController().navigate(it)
+                        }
+                    LoginViewModel.Navigate.GoBack -> Toast.makeText(
+                        requireContext(),
+                        "Error",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }
