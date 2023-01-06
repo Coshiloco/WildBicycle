@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.exmaple.wildbicycle.database.DataSource
+import com.exmaple.wildbicycle.user.User
 import com.exmaple.wildbicycle.utils.Event
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val database: DataSource
+    private val database: DataSource,
+    private val userMannagement: User
 ) : ViewModel() {
 
     private var _navigate = MutableLiveData<Event<Navigate>>()
@@ -24,6 +26,9 @@ class LoginViewModel @Inject constructor(
     private var _register = MutableLiveData<Event<Navigate>>()
     val register: LiveData<Event<Navigate>> = _register
 
+
+    private var _isCurrentUser = MutableLiveData<Event<Navigate>>()
+    val isCurrentUser: LiveData<Event<Navigate>> = _isCurrentUser
 
 
     private var _errorMessage = MutableLiveData<Event<String>>()
@@ -39,7 +44,17 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun Registrarse (email: String, password: String) {
+    fun isCurrentUser() {
+        userMannagement.checkNotNullUser {
+            if (it) {
+                _isCurrentUser.postValue(Event(Navigate.Home))
+            } else {
+                _errorMessage.postValue(Event("Tienes que Logearte"))
+            }
+        }
+    }
+
+    fun Registrarse(email: String, password: String) {
         database.registerUser(email, password) {
             if (it) {
                 _register.postValue(Event(Navigate.Home))

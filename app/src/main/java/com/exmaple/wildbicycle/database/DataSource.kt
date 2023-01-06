@@ -22,11 +22,10 @@ class DataSource @Inject constructor(
 
     fun login(email: String, password: String, callback: (Boolean) -> Unit) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { login ->
-            if (login.isSuccessful)  {
+            if (login.isSuccessful) {
                 providerSession = "emailAndPassword"
                 callback(true)
-            }
-            else callback(false)
+            } else callback(false)
         }.addOnFailureListener {
             callback(false)
         }
@@ -60,10 +59,12 @@ class DataSource @Inject constructor(
     fun accederALosUsuariosYRegistro(email: String, password: String) {
         var dateRegister = SimpleDateFormat("dd/MM/yyyy").format(Date())
         val database = configurarPersistenciaSinConexion()
-        database.collection("users").document(email).set(hashMapOf(
-            "user" to email,
-            "dateRegister" to dateRegister
-        ))
+        database.collection("users").document(email).set(
+            hashMapOf(
+                "user" to email,
+                "dateRegister" to dateRegister
+            )
+        )
     }
 
 }
