@@ -1,14 +1,15 @@
 package com.exmaple.wildbicycle.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.exmaple.wildbicycle.R
 import com.exmaple.wildbicycle.databinding.FragmentHomeBinding
+import androidx.navigation.fragment.findNavController
+import com.exmaple.wildbicycle.ui.login.LoginFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.FileDescriptor
 import java.io.PrintWriter
@@ -31,7 +32,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setListeners()
         setObservers()
     }
@@ -40,6 +40,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setListeners() {
+
     }
 
 }

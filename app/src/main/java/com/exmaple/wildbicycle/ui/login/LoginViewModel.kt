@@ -39,6 +39,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
+
     fun registerEmailUser(email: String, password: String) {
         userManager.registerUser(email, password, ProviderType.EMAIL_PASS) { result ->
             result.fold(
@@ -51,7 +52,12 @@ class LoginViewModel @Inject constructor(
     fun tryLoginExistingUser() {
         userManager.getUser() { result ->
             result.fold(
-                onSuccess = { user -> login(user.email, user.password) }, // This password from Firestore is cyphered
+                onSuccess = { user ->
+                    login(
+                        user.email,
+                        user.password
+                    )
+                }, // This password from Firestore is cyphered
                 onFailure = { _errorMessage.postValue(Event(it.message ?: "Error")) }
             )
         }

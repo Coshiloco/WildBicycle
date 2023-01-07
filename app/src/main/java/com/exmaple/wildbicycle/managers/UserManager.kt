@@ -35,23 +35,34 @@ class UserManager @Inject constructor(
         callback: (Result<Boolean>) -> Unit
     ) {
         try {
-            auth.createUserWithEmailAndPassword(email, password.SHA512Hash()).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    User(
-                        id = it.result.user?.uid ?: "null",
-                        email = email,
-                        password = password.SHA512Hash(),
-                        provider = provider,
-                    ).let { user ->
-                        dataSource.registerNewUser(user)
-                        callback(Result.success(true))
+            auth.createUserWithEmailAndPassword(email, password.SHA512Hash())
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        User(
+                            id = it.result.user?.uid ?: "null",
+                            email = email,
+                            password = password.SHA512Hash(),
+                            provider = provider,
+                        ).let { user ->
+                            dataSource.registerNewUser(user)
+                            callback(Result.success(true))
+                        }
                     }
+                }.addOnFailureListener {
+                    callback(Result.failure(it))
                 }
-            }.addOnFailureListener {
-                callback(Result.failure(it))
-            }
         } catch (ex: Exception) {
             callback(Result.failure(ex))
+        }
+    }
+
+    /**
+     * This method sign out the user
+     */
+
+    fun signOut(callback: (Result<Boolean>) -> Unit) {
+        auth.signOut().let {
+            callback(Result.success(true))
         }
     }
 
