@@ -23,7 +23,7 @@ class DataSource @Inject constructor(
                 "id" to user.id,
                 "email" to user.email,
                 "password" to user.password,
-//                "provider" to user.provider,
+                "provider" to user.provider,
                 "date" to user.date,
             )
         )
