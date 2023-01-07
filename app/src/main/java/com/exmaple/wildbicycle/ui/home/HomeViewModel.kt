@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.exmaple.wildbicycle.managers.UserManager
 import com.exmaple.wildbicycle.utils.Event
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class HomeViewModel @Inject constructor(
     private val userManager: UserManager
 ) : ViewModel() {
@@ -18,26 +20,20 @@ class HomeViewModel @Inject constructor(
     private var _errorMessage = MutableLiveData<Event<String>>()
     val errorMessage: LiveData<Event<String>> = _errorMessage
 
-
-    fun signOut() {
+    fun sigingOut() {
         userManager.signOut { result ->
             result.fold(
                 onSuccess = {
-                    if (it) _navigate.postValue(Event(Navigate.GoLogin))
+                    if (it) _navigate.postValue(Event(Navigate.GoNext))
                 },
                 onFailure = { error ->
-                    _errorMessage.postValue(
-                        Event(
-                            error.message ?: "Error al intentar iniciar sesion"
-                        )
-                    )
+                    _errorMessage.postValue(Event(error.message ?: "Error en desLogearte"))
                 }
             )
         }
     }
 
-
     enum class Navigate() {
-        GoLogin
+        GoNext
     }
 }
