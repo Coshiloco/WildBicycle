@@ -1,73 +1,63 @@
 package com.exmaple.wildbicycle.ui.login
 
-import android.widget.Toast
+import android.util.Log.i
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.exmaple.wildbicycle.database.DataSource
-import com.exmaple.wildbicycle.user.User
+import com.exmaple.wildbicycle.managers.SHA512
+import com.exmaple.wildbicycle.managers.SHA512.SHA512Hash
+import com.exmaple.wildbicycle.managers.UserManager
+import com.exmaple.wildbicycle.model.ProviderType
 import com.exmaple.wildbicycle.utils.Event
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val database: DataSource,
-    private val userMannagement: User
+    private val userManager: UserManager
 ) : ViewModel() {
 
     private var _navigate = MutableLiveData<Event<Navigate>>()
     val navigate: LiveData<Event<Navigate>> = _navigate
 
-
-    private var _register = MutableLiveData<Event<Navigate>>()
-    val register: LiveData<Event<Navigate>> = _register
-
-
-    private var _isCurrentUser = MutableLiveData<Event<Navigate>>()
-    val isCurrentUser: LiveData<Event<Navigate>> = _isCurrentUser
-
-
     private var _errorMessage = MutableLiveData<Event<String>>()
     val errorMessage: LiveData<Event<String>> = _errorMessage
 
-    fun comprobarLogin(email: String, password: String) {
-        database.login(email, password) {
-            if (it) {
-                _navigate.postValue(Event(Navigate.Home))
-            } else {
-                _errorMessage.postValue(Event("Error en algun campo"))
-            }
+    fun loginWithPlainPassword(email: String, password: String) =
+        login(email, password.SHA512Hash())
+
+    fun login(email: String, password: String) {
+        userManager.login(email, password) { result ->
+            result.fold(onSuccess = {
+                if (it) _navigate.postValue(Event(Navigate.Home))
+                else _errorMessage.postValue(Event("Login false"))
+
+            }, onFailure = { error ->
+                _errorMessage.postValue(Event(error.message ?: "Error en algun campo"))
+            })
         }
     }
 
-    fun isCurrentUser() {
-        userMannagement.checkNotNullUser {
-            if (it) {
-                _isCurrentUser.postValue(Event(Navigate.Home))
-            } else {
-                _errorMessage.postValue(Event("Tienes que Logearte"))
-            }
+    fun registerEmailUser(email: String, password: String) {
+        userManager.registerUser(email, password, ProviderType.EMAIL_PASS) { result ->
+            result.fold(
+                onSuccess = { _navigate.postValue(Event(Navigate.Home)) },
+                onFailure = { _errorMessage.postValue(Event("Error en algun campo")) }
+            )
         }
     }
 
-    fun Registrarse(email: String, password: String) {
-        database.registerUser(email, password) {
-            if (it) {
-                _register.postValue(Event(Navigate.Home))
-            } else {
-                _errorMessage.postValue(Event("Error en algun campo"))
-            }
+    fun tryLoginExistingUser() {
+        userManager.getUser() { result ->
+            result.fold(
+                onSuccess = { user -> login(user.email, user.password) }, // This password from Firestore is cyphered
+                onFailure = { _errorMessage.postValue(Event(it.message ?: "Error")) }
+            )
         }
     }
 
-    enum class Navigate() {
-        Home,
-        GoBack
+    enum class Navigate {
+        Home, GoBack
     }
-
-
 }
