@@ -1,7 +1,7 @@
 package com.exmaple.wildbicycle.di
 
-import com.exmaple.wildbicycle.database.DataSource
-import com.exmaple.wildbicycle.user.User
+import com.exmaple.wildbicycle.managers.DataSource
+import com.exmaple.wildbicycle.managers.UserManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,12 +24,8 @@ object ApplicationModule {
     @Provides
     fun provideFirebaseAuth(): FirebaseAuth = Firebase.auth
 
-
     @Provides
-    fun provideUser(auth: FirebaseAuth): User = User(auth)
+    fun provideDataSource(database: FirebaseFirestore): DataSource =
+        DataSource(database)
 
-
-    @Provides
-    fun provideDataSource(database: FirebaseFirestore, auth: FirebaseAuth): DataSource =
-        DataSource(database, auth)
 }
