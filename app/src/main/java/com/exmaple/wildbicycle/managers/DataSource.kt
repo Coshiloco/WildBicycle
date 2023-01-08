@@ -26,44 +26,11 @@ class DataSource @Inject constructor(
             hashMapOf(
                 "id" to user.id,
                 "email" to user.email,
-                "password" to user.password,
                 "provider" to user.provider,
                 "date" to user.date,
             )
         )
     }
-
-    /**
-     * This method updateTheChagedPassword
-     */
-
-    fun updateBBDDPassword(password: String, email: String) {
-        database.collection(USERS_COLLECTION)
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val cadena: String = document.data.getValue("email") as String
-                    val passwordBBDD: String = document.data.getValue("password") as String
-                    if (cadena.equals(email, true) && !passwordBBDD.equals(
-                            password.SHA512Hash(),
-                            true
-                        )
-                    ) {
-                        val id: String = document.data.getValue("id") as String
-                        database.collection(USERS_COLLECTION).document(id)
-                            .update("password", password.SHA512Hash())
-                            .addOnSuccessListener {
-                                Log.d(
-                                    TAG,
-                                    "DocumentSnapshot successfully updated"
-                                )
-                            }
-                            .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
-                    }
-                }
-            }
-    }
-
 
     fun getUser(userId: String, callback: (Result<User>) -> Unit) {
         database.collection(USERS_COLLECTION).document(userId).get()

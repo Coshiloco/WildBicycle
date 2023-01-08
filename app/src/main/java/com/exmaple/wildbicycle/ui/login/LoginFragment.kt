@@ -49,7 +49,7 @@ class LoginFragment : Fragment() {
 
     private fun setListeners() = with(binding) {
         fragmentLoginIniciarSesion.setOnClickListener {
-            viewModel.loginWithPlainPassword(
+            viewModel.login(
                 fragmentLoginEmail.editText?.text.toString(),
                 fragmentLoginPassword.editText?.text.toString()
             )
