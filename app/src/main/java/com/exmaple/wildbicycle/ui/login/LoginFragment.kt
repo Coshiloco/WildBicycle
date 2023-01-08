@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.exmaple.wildbicycle.BuildConfig
 import com.exmaple.wildbicycle.databinding.FragmentLoginBinding
 import com.exmaple.wildbicycle.managers.SHA512.SHA512Hash
+import com.exmaple.wildbicycle.utils.UserNotFoundEmailException
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -33,8 +34,8 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (BuildConfig.DEBUG) {
-            binding.fragmentLoginEmail.editText?.setText("a@a.com")
-            binding.fragmentLoginPassword.editText?.setText("abcde123")
+            binding.fragmentLoginEmail.editText?.setText("pablohurtadohg@gmail.com")
+            binding.fragmentLoginPassword.editText?.setText("papa2023")
         }
 
         setListeners()
@@ -59,6 +60,12 @@ class LoginFragment : Fragment() {
                 fragmentLoginPassword.editText?.text.toString()
             )
         }
+        fragmentLoginCambiarPassword.setOnClickListener {
+            viewModel.resetPassword(
+                fragmentLoginEmail.editText?.text.toString(),
+                fragmentLoginPassword.editText?.text.toString()
+            )
+        }
     }
 
     private fun setObservers() = with(viewModel) {
@@ -74,6 +81,22 @@ class LoginFragment : Fragment() {
                         requireContext(),
                         "Error",
                         Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+        resetPassword.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { eventoResetPassword ->
+                when (eventoResetPassword) {
+                    LoginViewModel.OptionsResetPassword.SendEmail -> Toast.makeText(
+                        requireContext(),
+                        "El email sera enviado a la cuenta asociada con este contraseña para cambiarla",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    LoginViewModel.OptionsResetPassword.UserNotFoundEmail -> Toast.makeText(
+                        requireContext(),
+                        UserNotFoundEmailException().message,
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             }

@@ -1,8 +1,11 @@
 package com.exmaple.wildbicycle.managers
 
+import android.text.TextUtils
 import com.exmaple.wildbicycle.managers.SHA512.SHA512Hash
 import com.exmaple.wildbicycle.model.ProviderType
 import com.exmaple.wildbicycle.model.User
+import com.exmaple.wildbicycle.utils.UserEmailNotIntroducingException
+import com.exmaple.wildbicycle.utils.UserNotFoundEmailException
 import com.google.firebase.auth.FirebaseAuth
 import java.util.Date
 import javax.inject.Inject
@@ -49,6 +52,8 @@ class UserManager @Inject constructor(
                         }
                     }
                 }.addOnFailureListener {
+                    callback(Result.failure(it))
+                }
                 callback(Result.failure(it))
             }
         } catch (ex: Exception) {
@@ -63,6 +68,32 @@ class UserManager @Inject constructor(
     fun signOut(callback: (Result<Boolean>) -> Unit) {
         auth.signOut().let {
             callback(Result.success(true))
+        }
+    }
+
+    /**
+     * THis method do a signOut
+     */
+    fun signOut(callback: (Result<Boolean>) -> Unit) {
+        auth.signOut().let {
+            callback(Result.success(true))
+        }
+    }
+
+    /**
+     * This method sent a email to reset the password to he user
+     */
+
+    fun resetPassword(email: String, password: String, callback: (Result<Boolean>) -> Unit) {
+        if (!TextUtils.isEmpty(email)) {
+            auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    dataSource.updateBBDDPassword(password, email)
+                    callback(Result.success(true))
+                } else callback(Result.success(false))
+            }
+        } else {
+            callback(Result.failure(UserEmailNotIntroducingException()))
         }
     }
 
