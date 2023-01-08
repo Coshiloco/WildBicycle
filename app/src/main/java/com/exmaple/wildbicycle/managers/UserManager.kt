@@ -54,8 +54,20 @@ class UserManager @Inject constructor(
                 }.addOnFailureListener {
                     callback(Result.failure(it))
                 }
+                callback(Result.failure(it))
+            }
         } catch (ex: Exception) {
             callback(Result.failure(ex))
+        }
+    }
+
+
+    /**
+     * THis method do a signOut
+     */
+    fun signOut(callback: (Result<Boolean>) -> Unit) {
+        auth.signOut().let {
+            callback(Result.success(true))
         }
     }
 
