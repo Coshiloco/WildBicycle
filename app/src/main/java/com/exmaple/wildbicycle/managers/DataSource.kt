@@ -55,7 +55,7 @@ class DataSource @Inject constructor(
                             .addOnSuccessListener {
                                 Log.d(
                                     TAG,
-                                    "DocumentSnapshot successfully updated!!!!!!!!!!!!!!"
+                                    "DocumentSnapshot successfully updated"
                                 )
                             }
                             .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
