@@ -24,6 +24,7 @@ object ApplicationModule {
     @Provides
     fun provideFirebaseAuth(): FirebaseAuth = Firebase.auth
 
+
     @Provides
     fun provideDataSource(database: FirebaseFirestore): DataSource =
         DataSource(database)
