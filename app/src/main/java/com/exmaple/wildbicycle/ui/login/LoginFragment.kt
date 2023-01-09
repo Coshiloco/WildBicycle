@@ -73,8 +73,8 @@ class LoginFragment : Fragment() {
             it.getContentIfNotHandled()?.let { eventoLogin ->
                 when (eventoLogin) {
                     LoginViewModel.Navigate.Home -> LoginFragmentDirections.actionNavLoginToHomeFragment()
-                        .let {
-                            findNavController().navigate(it)
+                        .let { action ->
+                            findNavController().navigate(action)
                         }
 
                     LoginViewModel.Navigate.GoBack -> Toast.makeText(

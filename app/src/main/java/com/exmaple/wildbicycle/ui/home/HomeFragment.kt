@@ -41,28 +41,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun setObservers() = with(viewModel) {
-        navigate.observe(viewLifecycleOwner) {
-            it.getContentIfNotHandled()?.let { eventoLogin ->
-                when (eventoLogin) {
-                    HomeViewModel.Navigate.GoNext -> HomeFragmentDirections.actionHomeFragmentToNavLogin()
-                        .let {
-                            findNavController().navigate(it)
-                        }
-                }
-            }
-        }
-        errorMessage.observe(viewLifecycleOwner) {
-            it.getContentIfNotHandled()?.let { mensajeError ->
-                Toast.makeText(requireContext(), mensajeError, Toast.LENGTH_SHORT).show()
-            }
-        }
 
     }
 
     private fun setListeners() = with(binding) {
-        fragmentHomeCerrarSesion.setOnClickListener {
-            viewModel.sigingOut()
-        }
     }
 
 }
