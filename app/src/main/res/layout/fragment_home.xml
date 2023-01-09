@@ -7,20 +7,4 @@
     tools:context=".ui.home.HomeFragment">
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/fragment_home_cerrarSesion"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/cerrar_sesion"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.636" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
