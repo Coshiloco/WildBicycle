@@ -9,9 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val userManager: UserManager
-) : ViewModel() {
+class HomeViewModel @Inject constructor() : ViewModel() {
 
 
     private var _navigate = MutableLiveData<Event<Navigate>>()
@@ -20,18 +18,6 @@ class HomeViewModel @Inject constructor(
     private var _errorMessage = MutableLiveData<Event<String>>()
     val errorMessage: LiveData<Event<String>> = _errorMessage
 
-    fun sigingOut() {
-        userManager.signOut { result ->
-            result.fold(
-                onSuccess = {
-                    if (it) _navigate.postValue(Event(Navigate.GoNext))
-                },
-                onFailure = { error ->
-                    _errorMessage.postValue(Event(error.message ?: "Error en desLogearte"))
-                }
-            )
-        }
-    }
 
     enum class Navigate() {
         GoNext
