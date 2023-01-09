@@ -70,6 +70,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx'
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.android.gms:play-services-auth:20.4.0'
 
 
     testImplementation 'junit:junit:4.13.2'
