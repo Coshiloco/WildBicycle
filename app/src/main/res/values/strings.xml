@@ -22,4 +22,7 @@
     <string name="registro">REGISTRARSE POR \nPRIMERA VEZ</string>
     <string name="cerrar_sesion">CERRAR SESION</string>
     <string name="obligatorio">Obligatorio*</string>
+    <string name="home">Home</string>
+
+    <string name="wildBicicle">WildBicicle</string>
 </resources>

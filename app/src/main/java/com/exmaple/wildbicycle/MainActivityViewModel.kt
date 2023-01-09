@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     private val userManager: UserManager
-): ViewModel() {
+) : ViewModel() {
 
     private var _navigate = MutableLiveData<Event<Navigate>>()
     val navigate: LiveData<Event<Navigate>> = _navigate
@@ -23,7 +23,7 @@ class MainActivityViewModel @Inject constructor(
     fun singOutUser() {
         userManager.signOut { result ->
             result.fold(
-                onSuccess =  {
+                onSuccess = {
                     _navigate.postValue(Event(Navigate.Login))
                 },
                 onFailure = {

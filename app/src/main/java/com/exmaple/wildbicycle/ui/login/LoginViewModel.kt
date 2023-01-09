@@ -22,6 +22,9 @@ class LoginViewModel @Inject constructor(
     private var _errorMessage = MutableLiveData<Event<String>>()
     val errorMessage: LiveData<Event<String>> = _errorMessage
 
+    private var _validateEmailFormat = MutableLiveData<Event<emailFormat>>()
+    val validateEmailFormat: LiveData<Event<emailFormat>> = _validateEmailFormat
+
     private var _resetPassword = MutableLiveData<Event<OptionsResetPassword>>()
     val resetPassword: LiveData<Event<OptionsResetPassword>> = _resetPassword
 
@@ -32,6 +35,20 @@ class LoginViewModel @Inject constructor(
                     if (it) _navigate.postValue(Event(Navigate.Home))
                     else _errorMessage.postValue(Event("Login false"))
                 }, onFailure = { error ->
+                    _errorMessage.postValue(Event(error.message ?: "Error en algun campo"))
+                }
+            )
+        }
+    }
+
+    fun validateEmail(email: String) {
+        userManager.validateEmailFormat(email) { result ->
+            result.fold(
+                onSuccess = {
+                    if (it) _validateEmailFormat.postValue(Event(emailFormat.Correct_format))
+                    else _validateEmailFormat.postValue(Event(emailFormat.Incorrect_format))
+                },
+                onFailure = { error ->
                     _errorMessage.postValue(Event(error.message ?: "Error en algun campo"))
                 }
             )
@@ -83,5 +100,10 @@ class LoginViewModel @Inject constructor(
     enum class OptionsResetPassword {
         SendEmail,
         UserNotFoundEmail
+    }
+
+    enum class emailFormat {
+        Incorrect_format,
+        Correct_format
     }
 }
