@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.homeFragment
+                R.id.nav_home_fragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -61,12 +61,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 when (navigate) {
                     MainActivityViewModel.Navigate.Login -> {
                         HomeFragmentDirections.actionHomeFragmentToNavLogin().let { action ->
-                                findNavController(R.id.nav_host_fragment_content_main).navigate(action)
-                            }
+                            findNavController(R.id.nav_host_fragment_content_main).navigate(action)
+                        }
                     }
-                    else ->
-                    {
-                        Toast.makeText(this@MainActivity, "Error en la navegacion", Toast.LENGTH_LONG).show()
+                    else -> {
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Error en la navegacion",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             }
@@ -85,9 +88,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        Toast.makeText(this@MainActivity, "Seleccionado ${item.itemId}", Toast.LENGTH_LONG).show()
         return when (item.itemId) {
-            R.id.nav_logout -> {
+            R.id.nav_home_fragment -> {
                 viewModel.singOutUser()
                 true
             }
