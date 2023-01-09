@@ -57,6 +57,21 @@ class UserManager @Inject constructor(
     }
 
     /**
+     * This method validate that email has the correct format
+     *
+     * @param email String to validate
+     */
+
+    fun validateEmailFormat(email: String, callback: (Result<Boolean>) -> Unit) {
+        if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) callback(
+            Result.success(
+                true
+            )
+        )
+        else callback(Result.success(false))
+    }
+
+    /**
      * THis method do a signOut
      */
     fun signOut(callback: (Result<Boolean>) -> Unit) {

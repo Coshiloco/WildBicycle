@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.exmaple.wildbicycle.BuildConfig
+import com.exmaple.wildbicycle.R
 import com.exmaple.wildbicycle.databinding.FragmentLoginBinding
 import com.exmaple.wildbicycle.managers.SHA512.SHA512Hash
 import com.exmaple.wildbicycle.utils.UserNotFoundEmailException
@@ -48,6 +51,11 @@ class LoginFragment : Fragment() {
     }
 
     private fun setListeners() = with(binding) {
+        fragmentLoginEmail.editText?.doOnTextChanged { text, start, before, count ->
+            viewModel.validateEmail(
+                fragmentLoginEmail.editText?.text.toString()
+            )
+        }
         fragmentLoginIniciarSesion.setOnClickListener {
             viewModel.login(
                 fragmentLoginEmail.editText?.text.toString(),
@@ -82,6 +90,35 @@ class LoginFragment : Fragment() {
                         "Error",
                         Toast.LENGTH_SHORT
                     ).show()
+                }
+            }
+        }
+        validateEmailFormat.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { eventoValidarEmail ->
+                when (eventoValidarEmail) {
+                    LoginViewModel.emailFormat.Incorrect_format -> {
+                        binding.fragmentLoginEmail.helperText =
+                            "El formato del email no es correcto" +
+                                    " un ejemplo so tuviera una cuenta de google seria" +
+                                    " example@gmail.com"
+                        binding.fragmentLoginIniciarSesion.setBackgroundTintList(
+                            ContextCompat.getColorStateList(
+                                requireContext(),
+                                R.color.gray_error_format_email
+                            )
+                        )
+                        binding.fragmentLoginIniciarSesion.isEnabled = false
+                    }
+                    LoginViewModel.emailFormat.Correct_format -> {
+                        binding.fragmentLoginEmail.helperText = "Obligatorio*"
+                        binding.fragmentLoginIniciarSesion.setBackgroundTintList(
+                            ContextCompat.getColorStateList(
+                                requireContext(),
+                                R.color.green
+                            )
+                        )
+                        binding.fragmentLoginIniciarSesion.isEnabled = true
+                    }
                 }
             }
         }

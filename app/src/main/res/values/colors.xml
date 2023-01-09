@@ -17,6 +17,8 @@
     <color name="pinki">#f8c7ed</color>
     <color name="azul_chillon">#009aff</color>
 
+    <color name="gray_error_format_email">#6A6663</color>
+
     <color name="primary_color_one">#FFE1AA</color>
     <color name="primary_color_two">#D4AF6A</color>
     <color name="primary_color_three">#AA8239</color>
