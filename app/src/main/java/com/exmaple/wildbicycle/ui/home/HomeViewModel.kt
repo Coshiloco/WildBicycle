@@ -1,25 +1,10 @@
 package com.exmaple.wildbicycle.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.exmaple.wildbicycle.managers.UserManager
-import com.exmaple.wildbicycle.utils.Event
+import com.exmaple.wildbicycle.bases.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor() : ViewModel() {
+class HomeViewModel @Inject constructor() : BaseViewModel() {
 
-
-    private var _navigate = MutableLiveData<Event<Navigate>>()
-    val navigate: LiveData<Event<Navigate>> = _navigate
-
-    private var _errorMessage = MutableLiveData<Event<String>>()
-    val errorMessage: LiveData<Event<String>> = _errorMessage
-
-
-    enum class Navigate() {
-        GoNext
-    }
 }

@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.exmaple.wildbicycle.bases.BaseViewModel
 import com.exmaple.wildbicycle.databinding.ActivityMainBinding
 import com.exmaple.wildbicycle.ui.home.HomeFragmentDirections
 
@@ -59,17 +60,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigate.observe(this@MainActivity) {
             it.getContentIfNotHandled()?.let { navigate ->
                 when (navigate) {
-                    MainActivityViewModel.Navigate.Login -> {
+                    BaseViewModel.Navigate.Login -> {
                         HomeFragmentDirections.actionHomeFragmentToNavLogin().let { action ->
                             findNavController(R.id.nav_host_fragment_content_main).navigate(action)
                         }
                     }
+
                     else -> {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Error en la navegacion",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        Toast.makeText(this@MainActivity, "Error en la navegacion", Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -93,6 +91,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 viewModel.singOutUser()
                 true
             }
+
             else -> false
         }
     }

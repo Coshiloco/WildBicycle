@@ -2,7 +2,7 @@ package com.exmaple.wildbicycle.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.exmaple.wildbicycle.bases.BaseViewModel
 import com.exmaple.wildbicycle.managers.DataSource
 import com.exmaple.wildbicycle.managers.UserManager
 import com.exmaple.wildbicycle.model.ProviderType
@@ -13,63 +13,74 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val userManager: UserManager,
-    private val dataSource: DataSource
-) : ViewModel() {
+) : BaseViewModel() {
 
-    private var _navigate = MutableLiveData<Event<Navigate>>()
-    val navigate: LiveData<Event<Navigate>> = _navigate
-
-    private var _errorMessage = MutableLiveData<Event<String>>()
-    val errorMessage: LiveData<Event<String>> = _errorMessage
-
-    private var _validateEmailFormat = MutableLiveData<Event<emailFormat>>()
-    val validateEmailFormat: LiveData<Event<emailFormat>> = _validateEmailFormat
+    private var _validateEmailFormat = MutableLiveData<Event<EmailFormat>>()
+    val validateEmailFormat: LiveData<Event<EmailFormat>> = _validateEmailFormat
 
     private var _resetPassword = MutableLiveData<Event<OptionsResetPassword>>()
     val resetPassword: LiveData<Event<OptionsResetPassword>> = _resetPassword
 
     fun login(email: String, password: String) {
+        _progress.postValue(Event(true))
         userManager.login(email, password) { result ->
             result.fold(
                 onSuccess = {
                     if (it) _navigate.postValue(Event(Navigate.Home))
                     else _errorMessage.postValue(Event("Login false"))
+                    _progress.postValue(Event(false))
                 }, onFailure = { error ->
                     _errorMessage.postValue(Event(error.message ?: "Error en algun campo"))
+                    _progress.postValue(Event(false))
                 }
             )
         }
     }
 
     fun validateEmail(email: String) {
+        _progress.postValue(Event(true))
         userManager.validateEmailFormat(email) { result ->
             result.fold(
                 onSuccess = {
-                    if (it) _validateEmailFormat.postValue(Event(emailFormat.Correct_format))
-                    else _validateEmailFormat.postValue(Event(emailFormat.Incorrect_format))
+                    if (it) _validateEmailFormat.postValue(Event(EmailFormat.CorrectFormat))
+                    else _validateEmailFormat.postValue(Event(EmailFormat.IncorrectFormat))
+                    _progress.postValue(Event(false))
                 },
                 onFailure = { error ->
                     _errorMessage.postValue(Event(error.message ?: "Error en algun campo"))
+                    _progress.postValue(Event(false))
                 }
             )
         }
     }
 
     fun registerEmailUser(email: String, password: String) {
+        _progress.postValue(Event(true))
         userManager.registerUser(email, password, ProviderType.EMAIL_PASS) { result ->
             result.fold(
-                onSuccess = { _navigate.postValue(Event(Navigate.Home)) },
-                onFailure = { _errorMessage.postValue(Event("Error en algun campo")) }
+                onSuccess = {
+                    _navigate.postValue(Event(Navigate.Home))
+                    _progress.postValue(Event(false))
+                },
+                onFailure = {
+                    _errorMessage.postValue(Event("Error en algun campo"))
+                    _progress.postValue(Event(false))
+                }
             )
         }
     }
 
     fun tryLoginExistingUser() {
+        _progress.postValue(Event(true))
         userManager.autoLogin { result ->
             result.fold(
-                onSuccess = { _navigate.postValue(Event(Navigate.Home)) },
+                onSuccess = {
+                    _navigate.postValue(Event(Navigate.Home))
+                    _progress.postValue(Event(false))
+                },
                 onFailure = { error ->
                     _errorMessage.postValue(Event(error.message ?: "Error en algun campo"))
+                    _progress.postValue(Event(false))
                 }
             )
         }
@@ -93,17 +104,13 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    enum class Navigate {
-        Home, GoBack
-    }
-
     enum class OptionsResetPassword {
         SendEmail,
         UserNotFoundEmail
     }
 
-    enum class emailFormat {
-        Incorrect_format,
-        Correct_format
+    enum class EmailFormat {
+        IncorrectFormat,
+        CorrectFormat
     }
 }
