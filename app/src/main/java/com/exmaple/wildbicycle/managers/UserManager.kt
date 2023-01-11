@@ -5,7 +5,9 @@ import com.exmaple.wildbicycle.model.ProviderType
 import com.exmaple.wildbicycle.model.User
 import com.exmaple.wildbicycle.utils.UserEmailNotIntroducingException
 import com.exmaple.wildbicycle.utils.UserErrorLoginException
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import javax.inject.Inject
 
 class UserManager @Inject constructor(
@@ -108,5 +110,23 @@ class UserManager @Inject constructor(
         dataSource.getUser(auth.currentUser?.uid ?: "null") {
             callback(it)
         }
+    }
+
+    fun googleLogin(account: GoogleSignInAccount, callback: (Result<Boolean>) -> Unit) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnSuccessListener {
+                User(
+                    id = it.user?.uid ?: "null",
+                    email = it.user?.email ?: "null",
+                    provider = ProviderType.GOOGLE,
+                ).let { user ->
+                    dataSource.registerNewUser(user)
+                    callback(Result.success(true))
+                }
+            }
+            .addOnFailureListener {
+                callback(Result.failure(Exception("Google Login Exception")))
+            }
     }
 }

@@ -3,10 +3,10 @@ package com.exmaple.wildbicycle.ui.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.exmaple.wildbicycle.bases.BaseViewModel
-import com.exmaple.wildbicycle.managers.DataSource
 import com.exmaple.wildbicycle.managers.UserManager
 import com.exmaple.wildbicycle.model.ProviderType
 import com.exmaple.wildbicycle.utils.Event
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -101,6 +101,12 @@ class LoginViewModel @Inject constructor(
                     _errorMessage.postValue(Event(it.message ?: "Error"))
                 }
             )
+        }
+    }
+
+    fun googleLogin(account: GoogleSignInAccount) {
+        userManager.googleLogin(account) {
+            _navigate.postValue(Event(Navigate.Home))
         }
     }
 

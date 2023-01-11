@@ -1,14 +1,17 @@
 package com.exmaple.wildbicycle.ui.login
 
+import android.app.Activity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.exmaple.wildbicycle.BuildConfig
@@ -16,6 +19,9 @@ import com.exmaple.wildbicycle.R
 import com.exmaple.wildbicycle.bases.BaseViewModel
 import com.exmaple.wildbicycle.databinding.FragmentLoginBinding
 import com.exmaple.wildbicycle.utils.UserNotFoundEmailException
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +29,28 @@ class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private val viewModel: LoginViewModel by viewModels()
+
+    private val signInRequest by lazy {
+        GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(WEB_CLIENT_ID)
+            .requestEmail()
+            .build()
+    }
+
+    private val googleRegisterResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            result.checkResultAndExecute {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                val account = task.getResult(ApiException::class.java)
+                viewModel.googleLogin(account)
+            }.onFailure { e ->
+                Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    private inline fun ActivityResult.checkResultAndExecute(block: ActivityResult.() -> Unit) =
+        if (resultCode == Activity.RESULT_OK) runCatching(block)
+        else Result.failure(Exception("Something went wrong"))
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
@@ -52,18 +80,30 @@ class LoginFragment : Fragment() {
                 fragmentLoginEmail.editText?.text.toString()
             )
         }
+
         fragmentLoginIniciarSesion.setOnClickListener {
             viewModel.login(
                 fragmentLoginEmail.editText?.text.toString(),
                 fragmentLoginPassword.editText?.text.toString()
             )
         }
+
         fragmentLoginRegistrarse.setOnClickListener {
             viewModel.registerEmailUser(
                 fragmentLoginEmail.editText?.text.toString(),
                 fragmentLoginPassword.editText?.text.toString()
             )
         }
+
+        fragmentLoginIniciarSesionGoogle.setOnClickListener {
+            googleRegisterResult.launch(
+                GoogleSignIn.getClient(
+                    requireActivity(),
+                    signInRequest
+                ).signInIntent
+            )
+        }
+
         fragmentLoginCambiarPassword.setOnClickListener {
             viewModel.resetPassword(
                 fragmentLoginEmail.editText?.text.toString(),
@@ -85,6 +125,7 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+
         validateEmailFormat.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { eventoValidarEmail ->
                 when (eventoValidarEmail) {
@@ -142,5 +183,9 @@ class LoginFragment : Fragment() {
                 binding.circularProgressIndicator.isVisible = visible
             }
         }
+    }
+
+    companion object {
+        private const val WEB_CLIENT_ID = "111012438267-2tlousk8k6u925h5cc6jhbsj8eq7fear.apps.googleusercontent.com"
     }
 }
