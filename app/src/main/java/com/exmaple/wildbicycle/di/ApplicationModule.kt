@@ -2,6 +2,7 @@ package com.exmaple.wildbicycle.di
 
 import com.exmaple.wildbicycle.managers.DataSource
 import com.exmaple.wildbicycle.managers.UserManager
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,7 +24,6 @@ object ApplicationModule {
 
     @Provides
     fun provideFirebaseAuth(): FirebaseAuth = Firebase.auth
-
 
     @Provides
     fun provideDataSource(database: FirebaseFirestore): DataSource =

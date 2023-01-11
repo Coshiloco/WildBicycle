@@ -1,13 +1,13 @@
 package com.exmaple.wildbicycle.managers
 
 import android.text.TextUtils
-import com.exmaple.wildbicycle.managers.SHA512.SHA512Hash
 import com.exmaple.wildbicycle.model.ProviderType
 import com.exmaple.wildbicycle.model.User
 import com.exmaple.wildbicycle.utils.UserEmailNotIntroducingException
-import com.exmaple.wildbicycle.utils.UserNotFoundEmailException
+import com.exmaple.wildbicycle.utils.UserErrorLoginException
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
-import java.util.Date
+import com.google.firebase.auth.GoogleAuthProvider
 import javax.inject.Inject
 
 class UserManager @Inject constructor(
@@ -38,13 +38,12 @@ class UserManager @Inject constructor(
         callback: (Result<Boolean>) -> Unit
     ) {
         try {
-            auth.createUserWithEmailAndPassword(email, password.SHA512Hash())
+            auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         User(
                             id = it.result.user?.uid ?: "null",
                             email = email,
-                            password = password.SHA512Hash(),
                             provider = provider,
                         ).let { user ->
                             dataSource.registerNewUser(user)
@@ -54,41 +53,46 @@ class UserManager @Inject constructor(
                 }.addOnFailureListener {
                     callback(Result.failure(it))
                 }
-                callback(Result.failure(it))
-            }
         } catch (ex: Exception) {
             callback(Result.failure(ex))
         }
     }
 
-
     /**
-     * THis method do a signOut
+     * This method validate that email has the correct format
+     *
+     * @param email String to validate
      */
-    fun signOut(callback: (Result<Boolean>) -> Unit) {
-        auth.signOut().let {
-            callback(Result.success(true))
-        }
+
+    fun validateEmailFormat(email: String, callback: (Result<Boolean>) -> Unit) {
+        if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) callback(
+            Result.success(
+                true
+            )
+        )
+        else callback(Result.success(false))
     }
 
     /**
      * THis method do a signOut
      */
     fun signOut(callback: (Result<Boolean>) -> Unit) {
-        auth.signOut().let {
-            callback(Result.success(true))
-        }
+        auth.signOut()
+        callback(Result.success(true))
+    }
+
+    fun autoLogin(callback: (Result<Boolean>) -> Unit) {
+        if (auth.currentUser != null) callback(Result.success(true))
+        else callback(Result.failure(UserErrorLoginException()))
     }
 
     /**
      * This method sent a email to reset the password to he user
      */
-
-    fun resetPassword(email: String, password: String, callback: (Result<Boolean>) -> Unit) {
+    fun resetPassword(email: String, callback: (Result<Boolean>) -> Unit) {
         if (!TextUtils.isEmpty(email)) {
             auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    dataSource.updateBBDDPassword(password, email)
                     callback(Result.success(true))
                 } else callback(Result.success(false))
             }
@@ -106,5 +110,23 @@ class UserManager @Inject constructor(
         dataSource.getUser(auth.currentUser?.uid ?: "null") {
             callback(it)
         }
+    }
+
+    fun googleLogin(account: GoogleSignInAccount, callback: (Result<Boolean>) -> Unit) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnSuccessListener {
+                User(
+                    id = it.user?.uid ?: "null",
+                    email = it.user?.email ?: "null",
+                    provider = ProviderType.GOOGLE,
+                ).let { user ->
+                    dataSource.registerNewUser(user)
+                    callback(Result.success(true))
+                }
+            }
+            .addOnFailureListener {
+                callback(Result.failure(Exception("Google Login Exception")))
+            }
     }
 }

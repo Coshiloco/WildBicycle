@@ -16,7 +16,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/title_activity_main"
+            android:label="@string/wildBicicle"
             android:theme="@style/Theme.WildBicycle.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
