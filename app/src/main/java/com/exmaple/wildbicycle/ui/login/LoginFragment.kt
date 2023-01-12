@@ -42,7 +42,7 @@ class LoginFragment : Fragment() {
             result.checkResultAndExecute {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(data)
                 val account = task.getResult(ApiException::class.java)
-                viewModel.googleLogin(account)
+                viewModel.googleLogin(account, requireContext())
             }.onFailure { e ->
                 Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
@@ -52,7 +52,11 @@ class LoginFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK) runCatching(block)
         else Result.failure(Exception("Something went wrong"))
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -121,7 +125,11 @@ class LoginFragment : Fragment() {
                             findNavController().navigate(action)
                         }
 
-                    else -> Toast.makeText(requireContext(), "Error en la navegacion", Toast.LENGTH_LONG).show()
+                    else -> Toast.makeText(
+                        requireContext(),
+                        "Error en la navegacion",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
@@ -145,10 +153,11 @@ class LoginFragment : Fragment() {
 
                     LoginViewModel.EmailFormat.CorrectFormat -> {
                         binding.fragmentLoginEmail.helperText = "Obligatorio*"
-                        binding.fragmentLoginIniciarSesion.backgroundTintList = ContextCompat.getColorStateList(
-                            requireContext(),
-                            R.color.green
-                        )
+                        binding.fragmentLoginIniciarSesion.backgroundTintList =
+                            ContextCompat.getColorStateList(
+                                requireContext(),
+                                R.color.green
+                            )
                         binding.fragmentLoginIniciarSesion.isEnabled = true
                     }
                 }
@@ -186,6 +195,7 @@ class LoginFragment : Fragment() {
     }
 
     companion object {
-        private const val WEB_CLIENT_ID = "111012438267-2tlousk8k6u925h5cc6jhbsj8eq7fear.apps.googleusercontent.com"
+        private const val WEB_CLIENT_ID =
+            "111012438267-2tlousk8k6u925h5cc6jhbsj8eq7fear.apps.googleusercontent.com"
     }
 }

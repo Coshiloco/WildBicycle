@@ -1,5 +1,7 @@
 package com.exmaple.wildbicycle.ui.login
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.exmaple.wildbicycle.bases.BaseViewModel
@@ -104,10 +106,34 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun googleLogin(account: GoogleSignInAccount) {
-        userManager.googleLogin(account) {
-            _navigate.postValue(Event(Navigate.Home))
-        }
+    fun googleLogin(account: GoogleSignInAccount, context: Context) {
+        userManager.googleLogin(account, { resultActionNavigate ->
+            resultActionNavigate.fold(
+                onSuccess = {
+                    if (it) _navigate.postValue(Event(Navigate.Home))
+                },
+                onFailure = {
+
+                }
+            )
+        }, { resultBBDDRegister ->
+            resultBBDDRegister.fold(
+                onSuccess = {
+                    if (it) Toast.makeText(
+                        context, "El usuario se ha registrado con google por prime" +
+                                "ra vez", Toast.LENGTH_LONG
+                    ).show()
+                    else Toast.makeText(
+                        context,
+                        "El usuario ya esta registrado con google en la BBDD ",
+                        Toast.LENGTH_LONG
+                    ).show()
+                },
+                onFailure = {
+
+                }
+            )
+        })
     }
 
     enum class OptionsResetPassword {

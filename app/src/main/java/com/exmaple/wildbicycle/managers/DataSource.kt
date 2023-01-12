@@ -32,6 +32,19 @@ class DataSource @Inject constructor(
         )
     }
 
+    fun checkSingInGoogleRegisteredInBBDD(email: String?, callback: (Result<Boolean>) -> Unit) {
+        database.collection(USERS_COLLECTION)
+            .whereEqualTo("email", email)
+            .get()
+            .addOnSuccessListener {
+                callback(Result.success(false))
+            }
+            .addOnFailureListener { exception ->
+                callback(Result.success(true))
+                Log.w(TAG, "Error getting documents: ", exception)
+            }
+    }
+
     fun getUser(userId: String, callback: (Result<User>) -> Unit) {
         database.collection(USERS_COLLECTION).document(userId).get()
             .addOnSuccessListener { documentSnapshot ->
