@@ -112,7 +112,11 @@ class UserManager @Inject constructor(
         }
     }
 
-    fun googleLogin(account: GoogleSignInAccount, callback: (Result<Boolean>) -> Unit) {
+    fun googleLogin(
+        account: GoogleSignInAccount,
+        callback: (Result<Boolean>) -> Unit,
+        callbackBBDD: (Result<Boolean>) -> Unit
+    ) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential)
             .addOnSuccessListener {
@@ -121,7 +125,18 @@ class UserManager @Inject constructor(
                     email = it.user?.email ?: "null",
                     provider = ProviderType.GOOGLE,
                 ).let { user ->
-                    dataSource.registerNewUser(user)
+                    dataSource.checkSingInGoogleRegisteredInBBDD(account.email) { result ->
+                        result.fold(
+                            onSuccess = { resultReadUserIFitRegistered ->
+                                if (resultReadUserIFitRegistered) {
+                                    dataSource.registerNewUser(user)
+                                    callbackBBDD(Result.success(true))
+                                } else callbackBBDD(Result.success(false))
+                            },
+                            onFailure = {
+                            }
+                        )
+                    }
                     callback(Result.success(true))
                 }
             }
