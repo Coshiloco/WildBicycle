@@ -88,10 +88,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_home_fragment -> {
-                viewModel.singOutUser()
+                viewModel.singOutUser(this, applicationContext)
                 true
             }
-
             else -> false
         }
     }
