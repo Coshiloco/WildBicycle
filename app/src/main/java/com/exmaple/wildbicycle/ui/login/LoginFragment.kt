@@ -145,7 +145,7 @@ class LoginFragment : Fragment() {
                         binding.fragmentLoginIniciarSesion.setBackgroundTintList(
                             ContextCompat.getColorStateList(
                                 requireContext(),
-                                R.color.gray_error_format_email
+                                R.color.md_theme_light_tertiary
                             )
                         )
                         binding.fragmentLoginIniciarSesion.isEnabled = false
@@ -153,11 +153,6 @@ class LoginFragment : Fragment() {
 
                     LoginViewModel.EmailFormat.CorrectFormat -> {
                         binding.fragmentLoginEmail.helperText = "Obligatorio*"
-                        binding.fragmentLoginIniciarSesion.backgroundTintList =
-                            ContextCompat.getColorStateList(
-                                requireContext(),
-                                R.color.green
-                            )
                         binding.fragmentLoginIniciarSesion.isEnabled = true
                     }
                 }
