@@ -67,7 +67,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     }
 
                     else -> {
-                        Toast.makeText(this@MainActivity, "Error en la navegacion", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Error en la navegacion",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             }
@@ -88,10 +92,41 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_home_fragment -> {
-                viewModel.singOutUser()
+                viewModel.singOutUser(this, { resultSingOutNormal ->
+                    resultSingOutNormal.fold(
+                        onSuccess = {
+                            if (it) Toast.makeText(
+                                applicationContext, "Se ha deslogeado con Firebase auth",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            else Toast.makeText(
+                                applicationContext, "error deslogin firebase auth",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        },
+                        onFailure = {
+
+                        }
+                    )
+                }, { resultSingOutGoogle ->
+                    resultSingOutGoogle.fold(
+                        onSuccess = {
+                            if (it) Toast.makeText(
+                                applicationContext, "Se ha deslogeado con Google",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            else Toast.makeText(
+                                applicationContext, "error deslogin Google",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        },
+                        onFailure = {
+
+                        }
+                    )
+                })
                 true
             }
-
             else -> false
         }
     }
