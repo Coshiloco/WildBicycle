@@ -142,15 +142,8 @@ class LoginFragment : Fragment() {
                             "El formato del email no es correcto" +
                                     " un ejemplo so tuviera una cuenta de google seria" +
                                     " example@gmail.com"
-                        binding.fragmentLoginIniciarSesion.setBackgroundTintList(
-                            ContextCompat.getColorStateList(
-                                requireContext(),
-                                R.color.md_theme_light_tertiary
-                            )
-                        )
                         binding.fragmentLoginIniciarSesion.isEnabled = false
                     }
-
                     LoginViewModel.EmailFormat.CorrectFormat -> {
                         binding.fragmentLoginEmail.helperText = "Obligatorio*"
                         binding.fragmentLoginIniciarSesion.isEnabled = true
