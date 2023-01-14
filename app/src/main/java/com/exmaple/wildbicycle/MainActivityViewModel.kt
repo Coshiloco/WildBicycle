@@ -28,40 +28,25 @@ class MainActivityViewModel @Inject constructor(
             .build()
     }
 
-    fun singOutUser(activity: MainActivity, context: Context) {
+    fun singOutUser(activity: MainActivity, callback: (Result<Boolean>) -> Unit, callbackGoogle: (Result<Boolean>) -> Unit) {
         userManager.signOut { result ->
             result.fold(
                 onSuccess = {
-                    if (it) Toast.makeText(
-                        context,
-                        "Se deslogeo de forma normal con exito ",
-                        Toast.LENGTH_LONG
-                    ) else Toast.makeText(
-                        context,
-                        "Risas ",
-                        Toast.LENGTH_LONG
-                    )
+                    if (it) callback(Result.success(true))
                 },
                 onFailure = {
-
+                    callback(Result.success(false))
                 }
             )
         }
         val mGoogleSignInClient = GoogleSignIn.getClient(activity, signInRequest)
         mGoogleSignInClient.signOut().addOnCompleteListener {
-            Toast.makeText(
-                context,
-                "El ha compuplido el filtro ",
-                Toast.LENGTH_LONG
-            )
+
+            callbackGoogle(Result.success(true))
             _navigate.postValue(Event(Navigate.Login))
 
         }.addOnFailureListener {
-            Toast.makeText(
-                context,
-                "Fallo ",
-                Toast.LENGTH_LONG
-            )
+            callbackGoogle(Result.success(false))
         }
 
     }
