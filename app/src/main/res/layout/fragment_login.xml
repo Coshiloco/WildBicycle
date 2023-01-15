@@ -9,7 +9,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fragment_login_email"
-        style="@style/Theme.WildBicycle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -34,7 +33,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fragment_login_password"
-        style="@style/Theme.WildBicycle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -60,7 +58,6 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_login_iniciar_sesion"
-        style="@style/Theme.WildBicycle"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
@@ -72,7 +69,6 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_login_registrarse"
-        style="@style/Theme.WildBicycle"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -84,7 +80,6 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_login_cambiar_password"
-        style="@style/Theme.WildBicycle"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"

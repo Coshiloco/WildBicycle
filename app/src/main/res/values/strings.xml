@@ -13,6 +13,11 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="menu_login">Login</string>
+    <string name="running_menu">Running</string>
+    <string name="menu_record">Historial</string>
+    <string name="menu_became_premium">Hazte Premium</string>
+    <string name="menu_cuenta">Cuenta</string>
+    <string name="clear_preferences"></string>
 
     <string name="introducir_email">Introduce tu email</string>
     <string name="introducir_contraseña">Introduce tu contraseña</string>
