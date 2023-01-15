@@ -58,6 +58,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_login_iniciar_sesion"
+        android:theme="@style/Theme.WildBicycle"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
@@ -69,6 +70,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_login_registrarse"
+        android:theme="@style/Theme.WildBicycle"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -80,6 +82,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_login_cambiar_password"
+        android:theme="@style/Theme.WildBicycle"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -92,6 +95,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_login_iniciar_sesion_google"
         style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+        android:theme="@style/Theme.WildBicycle"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -104,6 +108,8 @@
 
     <ProgressBar
         android:id="@+id/circular_progress_indicator"
+        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+        android:theme="@style/Theme.WildBicycle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/fragment_login_iniciar_sesion"
