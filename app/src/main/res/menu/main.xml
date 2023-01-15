@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
-
-    <group android:checkableBehavior="single">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
         <item
-            android:id="@+id/nav_item_main_drawer"
+            android:id="@+id/nav_item_main"
             android:icon="@drawable/ic_camino_icon"
             android:title="@string/running_menu" />
         <item
-            android:id="@+id/nav_item_record_drawer"
+            android:id="@+id/nav_item_record"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_record" />
         <item
-            android:id="@+id/nav_item_premium_drawer"
+            android:id="@+id/nav_item_premium"
             android:icon="@android:drawable/star_on"
             android:title="@string/menu_became_premium" />
     </group>
     <item android:title="@string/menu_cuenta">
         <menu>
             <item
-                android:id="@+id/nav_item_clearpreferences_drawer"
+                android:id="@+id/nav_item_clearpreferences"
                 android:icon="@android:drawable/ic_popup_sync"
                 android:title="@string/clear_preferences">
             </item>
