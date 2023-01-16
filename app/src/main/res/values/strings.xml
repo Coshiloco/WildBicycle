@@ -34,4 +34,10 @@
     <string name="home">Home</string>
 
     <string name="wildBicicle">WildBicicle</string>
+    <string name="daysBike">4d 03:56:23</string>
+    <string name="distance">DISTANCE</string>
+    <string name="_30">30%</string>
+    <string name="_5_10">5/10</string>
+    <string name="runs">RUNS</string>
+    <string name="_4d_03_56_23">4d 03:56:23</string>
 </resources>
