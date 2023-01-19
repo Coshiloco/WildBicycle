@@ -61,4 +61,7 @@
     <color name="md_theme_dark_surfaceTint">#D0BCFF</color>
     <color name="md_theme_dark_outlineVariant">#49454F</color>
     <color name="md_theme_dark_scrim">#000000</color>
+    <color name="distance_circle_color">#550000</color>
+    <color name="races_level_circle_color">#554600</color>
+    <color name="races_level_circle_color_progress">#D4C26A</color>
 </resources>

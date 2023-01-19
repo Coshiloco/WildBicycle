@@ -1,35 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/side_nav_bar"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="45dp"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:theme="@style/Theme.WildBicycle">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/nav_header_desc"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@mipmap/ic_launcher_round" />
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/lyNav_Levels"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/nav_header_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:orientation="vertical"
+        android:theme="@style/Theme.WildBicycle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nav_header_subtitle" />
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/lyNavLevelBike"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:theme="@style/Theme.WildBicycle">
+
+            <RelativeLayout
+                android:id="@+id/rlHeaderLevelBike"
+                android:layout_width="wrap_content"
+                android:gravity="top"
+                android:layout_height="110dp"
+                android:theme="@style/Theme.WildBicycle">
+            <TextView
+                android:id="@+id/tvNumberLevelBike"
+                android:layout_width="117dp"
+                android:layout_height="wrap_content"
+                android:text="@string/level"
+                android:textAlignment="textEnd"
+                android:textSize="12sp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="10dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:translationZ="10dp"/>
+            <ImageView
+                android:id="@+id/ivSportBike"
+                android:layout_width="117dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/bike"/>
+            <androidx.cardview.widget.CardView
+                android:translationZ="10dp"
+                android:id="@+id/cviLevelBike"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                app:cardCornerRadius="32.5dp"
+                android:layout_marginLeft="5dp">
+                <ImageView
+                    android:id="@+id/ivLevelBike"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:src="@drawable/level_1"/>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/tvTotalTimeBike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="85dp"
+                android:text="4d 03:56:23"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlDataLevelBike"
+                android:layout_width="110dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="110dp"
+                android:layout_gravity="top|center"
+                android:theme="@style/Theme.WildBicycle">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvLevelBike"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    app:cardCornerRadius="55dp"
+                    android:layout_margin="0dp">
+                    <me.tankery.lib.circularseekbar.CircularSeekBar
+                        android:id="@+id/csbDistanceBike"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="0dp"
+                        android:translationZ="5dp"
+                        app:cs_circle_color="@color/distance_circle_color"
+                        app:cs_circle_progress_color="@color/races_level_circle_color_progress"
+                        app:cs_circle_stroke_width="8dp"
+                        app:cs_circle_style="butt"
+                        app:cs_disable_pointer="true"
+                        app:cs_end_angle="0"
+                        app:cs_max="100"
+                        app:cs_negative_enabled="true"
+                        app:cs_pointer_angle="0"
+                        app:cs_pointer_stroke_width="8dp"
+                        app:cs_progress="30"
+                        app:cs_start_angle="180" />
+                    <me.tankery.lib.circularseekbar.CircularSeekBar
+                        android:id="@+id/csbRunsBike"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="0dp"
+                        android:translationY="0dp"
+                        android:translationZ="0dp"
+                        app:cs_circle_color="@color/races_level_circle_color"
+                        app:cs_circle_progress_color="@color/races_level_circle_color_progress"
+                        app:cs_circle_stroke_width="8dp"
+                        app:cs_circle_style="butt"
+                        app:cs_disable_pointer="true"
+                        app:cs_end_angle="180"
+                        app:cs_max="100"
+                        app:cs_negative_enabled="true"
+                        app:cs_pointer_angle="0"
+                        app:cs_pointer_stroke_width="8dp"
+                        app:cs_progress="30"
+                        app:cs_start_angle="0" />
+
+                    <TextView
+                        android:id="@+id/tvBikeDistanceLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/distance"
+                        android:textAlignment="center"
+                        android:textSize="10sp"
+                        android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/tvTotalDistanceBike"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_30"
+                        android:textAlignment="center"
+                        android:textSize="25sp"
+                        android:layout_marginTop="23dp"/>
+                    <TextView
+                        android:id="@+id/tvTotalRunsBike"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_5_10"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:layout_marginTop="55dp"/>
+                    <TextView
+                        android:id="@+id/tvBikeRunsLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/runs"
+                        android:textAlignment="center"
+                        android:textSize="10sp"
+                        android:layout_marginTop="80dp"/>
+
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
