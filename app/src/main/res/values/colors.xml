@@ -64,4 +64,5 @@
     <color name="distance_circle_color">#550000</color>
     <color name="races_level_circle_color">#554600</color>
     <color name="races_level_circle_color_progress">#D4C26A</color>
+    <color name="level_backgroud">#116611</color>
 </resources>
