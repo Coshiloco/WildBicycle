@@ -51,16 +51,14 @@
                     android:text="@string/level"
                     android:textAlignment="textEnd"
                     android:textSize="12sp"
-                    android:translationZ="10dp"
-                    tools:ignore="RtlHardcoded,RtlSymmetry,VisualLintOverlap" />
+                    android:translationZ="10dp" />
 
                 <ImageView
                     android:id="@+id/ivSportBike"
                     android:layout_width="117dp"
                     android:layout_height="75dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/bike"
-                    tools:ignore="ContentDescription" />
+                    android:src="@drawable/bike" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cviLevelBike"
@@ -68,8 +66,7 @@
                     android:layout_height="65dp"
                     android:layout_marginLeft="5dp"
                     android:translationZ="10dp"
-                    app:cardCornerRadius="32.5dp"
-                    tools:ignore="RtlHardcoded">
+                    app:cardCornerRadius="32.5dp">
 
                     <ImageView
                         android:id="@+id/ivLevelBike"
@@ -78,8 +75,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="0dp"
-                        android:src="@drawable/level_1"
-                        tools:ignore="ContentDescription" />
+                        android:src="@drawable/level_1" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -89,8 +85,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="85dp"
                     android:paddingTop="4dp"
-                    android:text="4d 03:56:23"
-                    tools:ignore="HardcodedText,RtlHardcoded" />
+                    android:text="@string/_4d_03_56_23" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -99,19 +94,14 @@
                 android:layout_height="110dp"
                 android:layout_gravity="top|center"
                 android:layout_marginLeft="20dp"
-                android:theme="@style/Theme.WildBicycle"
-                tools:ignore="RtlHardcoded">
+                android:theme="@style/Theme.WildBicycle">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvLevelBike"
                     android:layout_width="110dp"
                     android:layout_height="110dp"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="0dp"
-                    app:cardCornerRadius="55dp"
-                    tools:ignore="TextSizeCheck">
+                    android:layout_margin="0dp"
+                    app:cardCornerRadius="55dp">
 
                     <me.tankery.lib.circularseekbar.CircularSeekBar
                         android:id="@+id/csbDistanceBike"
@@ -162,8 +152,7 @@
                         android:gravity="center"
                         android:text="@string/distance"
                         android:textAlignment="center"
-                        android:textSize="10sp"
-                        tools:ignore="SmallSp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tvTotalDistanceBike"
@@ -191,9 +180,7 @@
                         android:gravity="center"
                         android:text="@string/runs"
                         android:textAlignment="center"
-                        android:textSize="10sp"
-                        tools:ignore="SmallSp" />
-
+                        android:textSize="10sp" />
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
         </LinearLayout>
@@ -202,18 +189,15 @@
             android:id="@+id/lyNavLevelRollerSkate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
             android:orientation="horizontal"
-            android:theme="@style/Theme.WildBicycle"
-            tools:ignore="RtlHardcoded">
+            android:paddingTop="20dp"
+            android:theme="@style/Theme.WildBicycle">
 
             <RelativeLayout
-                android:id="@+id/lyHeaderLevelRollerSkate"
+                android:id="@+id/rlHeaderLevelRollerSkate"
                 android:layout_width="wrap_content"
                 android:layout_height="110dp"
-                android:gravity="bottom"
-                android:orientation="vertical"
+                android:gravity="top"
                 android:theme="@style/Theme.WildBicycle">
 
                 <TextView
@@ -228,16 +212,14 @@
                     android:text="@string/level"
                     android:textAlignment="textEnd"
                     android:textSize="12sp"
-                    android:translationZ="10dp"
-                    tools:ignore="RtlSymmetry,VisualLintOverlap" />
+                    android:translationZ="10dp" />
 
                 <ImageView
                     android:id="@+id/ivSportRollerSkate"
                     android:layout_width="117dp"
                     android:layout_height="75dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/rollerskate"
-                    tools:ignore="ContentDescription" />
+                    android:src="@drawable/rollerskate" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cviLevelRollerSkate"
@@ -254,8 +236,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="0dp"
-                        android:src="@drawable/level_1"
-                        tools:ignore="ContentDescription" />
+                        android:src="@drawable/level_1" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -266,9 +247,7 @@
                     android:layout_marginTop="85dp"
                     android:paddingTop="4dp"
                     android:text="@string/_4d_03_56_23" />
-
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:id="@+id/rlDataLevelRollerSkate"
@@ -276,19 +255,14 @@
                 android:layout_height="110dp"
                 android:layout_gravity="top|center"
                 android:layout_marginLeft="20dp"
-                android:orientation="vertical"
                 android:theme="@style/Theme.WildBicycle">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvLevelRollerSkate"
                     android:layout_width="110dp"
                     android:layout_height="110dp"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="0dp"
-                    app:cardCornerRadius="55dp"
-                    tools:ignore="TextSizeCheck">
+                    android:layout_margin="0dp"
+                    app:cardCornerRadius="55dp">
 
                     <me.tankery.lib.circularseekbar.CircularSeekBar
                         android:id="@+id/csbDistanceRollerSkate"
@@ -296,7 +270,6 @@
                         android:layout_height="110dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="0dp"
-                        android:translationY="0dp"
                         android:translationZ="5dp"
                         app:cs_circle_color="@color/distance_circle_color"
                         app:cs_circle_progress_color="@color/races_level_circle_color_progress"
@@ -340,8 +313,7 @@
                         android:gravity="center"
                         android:text="@string/distance"
                         android:textAlignment="center"
-                        android:textSize="10sp"
-                        tools:ignore="SmallSp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tvTotalDistanceRollerSkate"
@@ -369,9 +341,168 @@
                         android:gravity="center"
                         android:text="@string/runs"
                         android:textAlignment="center"
-                        android:textSize="10sp"
-                        tools:ignore="SmallSp" />
+                        android:textSize="10sp" />
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/lyNavLevelRunning"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:theme="@style/Theme.WildBicycle">
+
+            <RelativeLayout
+                android:id="@+id/rlHeaderLevelRunning"
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:gravity="top"
+                android:theme="@style/Theme.WildBicycle">
+
+                <TextView
+                    android:id="@+id/tvNumberLevelRunning"
+                    android:layout_width="117dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:paddingTop="2dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="2dp"
+                    android:text="@string/level"
+                    android:textAlignment="textEnd"
+                    android:textSize="12sp"
+                    android:translationZ="10dp" />
+
+                <ImageView
+                    android:id="@+id/ivSportRunning"
+                    android:layout_width="117dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/running" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cviLevelRunning"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="5dp"
+                    android:translationZ="10dp"
+                    app:cardCornerRadius="32.5dp">
+
+                    <ImageView
+                        android:id="@+id/ivLevelRunning"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:src="@drawable/level_1" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tvTotalTimeRunning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="85dp"
+                    android:paddingTop="4dp"
+                    android:text="@string/_4d_03_56_23" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlDataLevelRunning"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_gravity="top|center"
+                android:layout_marginLeft="20dp"
+                android:theme="@style/Theme.WildBicycle">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvLevelRunning"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="0dp"
+                    app:cardCornerRadius="55dp">
+
+                    <me.tankery.lib.circularseekbar.CircularSeekBar
+                        android:id="@+id/csbDistanceRunning"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="0dp"
+                        android:translationZ="5dp"
+                        app:cs_circle_color="@color/distance_circle_color"
+                        app:cs_circle_progress_color="@color/races_level_circle_color_progress"
+                        app:cs_circle_stroke_width="8dp"
+                        app:cs_circle_style="butt"
+                        app:cs_disable_pointer="true"
+                        app:cs_end_angle="0"
+                        app:cs_max="100"
+                        app:cs_negative_enabled="true"
+                        app:cs_pointer_angle="0"
+                        app:cs_pointer_stroke_width="8dp"
+                        app:cs_progress="30"
+                        app:cs_start_angle="180" />
+
+                    <me.tankery.lib.circularseekbar.CircularSeekBar
+                        android:id="@+id/csbRunsRunning"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="0dp"
+                        android:translationY="0dp"
+                        android:translationZ="0dp"
+                        app:cs_circle_color="@color/races_level_circle_color"
+                        app:cs_circle_progress_color="@color/races_level_circle_color_progress"
+                        app:cs_circle_stroke_width="8dp"
+                        app:cs_circle_style="butt"
+                        app:cs_disable_pointer="true"
+                        app:cs_end_angle="180"
+                        app:cs_max="100"
+                        app:cs_negative_enabled="true"
+                        app:cs_pointer_angle="0"
+                        app:cs_pointer_stroke_width="8dp"
+                        app:cs_progress="30"
+                        app:cs_start_angle="0" />
+
+                    <TextView
+                        android:id="@+id/tvRunningDistanceLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+                        android:text="@string/distance"
+                        android:textAlignment="center"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalDistanceRunning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="23dp"
+                        android:text="@string/_30"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalRunsRunning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="55dp"
+                        android:text="@string/_5_10"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tvBikeRunsRunning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="80dp"
+                        android:gravity="center"
+                        android:text="@string/runs"
+                        android:textAlignment="center"
+                        android:textSize="10sp" />
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
         </LinearLayout>
