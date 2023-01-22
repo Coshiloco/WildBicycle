@@ -4,25 +4,34 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <!--        <item-->
-        <!--            android:id="@+id/nav_home"-->
-        <!--            android:icon="@drawable/ic_menu_camera"-->
-        <!--            android:title="@string/menu_home" />-->
-        <!--        <item-->
-        <!--            android:id="@+id/nav_gallery"-->
-        <!--            android:icon="@drawable/ic_menu_gallery"-->
-        <!--            android:title="@string/menu_gallery" />-->
-        <!--        <item-->
-        <!--            android:id="@+id/nav_slideshow"-->
-        <!--            android:icon="@drawable/ic_menu_slideshow"-->
-        <!--            android:title="@string/menu_slideshow" />-->
         <item
-            android:id="@+id/nav_login"
-            android:icon="@drawable/ic_outline_login_24"
-            android:title="@string/menu_login" />
+            android:id="@+id/nav_item_main_drawer"
+            android:theme="@style/Theme.WildBicycle"
+            android:icon="@drawable/ic_camino_icon"
+            android:title="@string/running_menu" />
         <item
-            android:id="@+id/nav_home_fragment"
-            android:icon="@drawable/ic_outline_logout_24"
-            android:title="@string/cerrar_sesion" />
+            android:id="@+id/nav_item_record_drawer"
+            android:theme="@style/Theme.WildBicycle"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_record" />
+        <item
+            android:id="@+id/nav_item_premium_drawer"
+            android:theme="@style/Theme.WildBicycle"
+            android:icon="@android:drawable/star_on"
+            android:title="@string/menu_became_premium" />
     </group>
+    <item android:title="@string/menu_cuenta">
+        <menu>
+            <item
+                android:id="@+id/nav_item_clearpreferences_drawer"
+                android:theme="@style/Theme.WildBicycle"
+                android:icon="@android:drawable/ic_popup_sync"
+                android:title="@string/clear_preferences" />
+            <item
+                android:id="@+id/nav_home_fragment"
+                android:theme="@style/Theme.WildBicycle"
+                android:icon="@drawable/ic_outline_logout_24"
+                android:title="@string/cerrar_sesion" />
+        </menu>
+    </item>
 </menu>

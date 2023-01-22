@@ -13,6 +13,15 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="menu_login">Login</string>
+    <string name="running_menu">Running</string>
+    <string name="menu_record">Historial</string>
+    <string name="menu_became_premium">Hazte Premium</string>
+    <string name="menu_cuenta">Cuenta</string>
+    <string name="clear_preferences">Reestablecer ajustes</string>
+
+    <string name="level">Nivel</string>
+    <string name="nav_hi">quien mueve las piernas mueve el corazon</string>
+    <string name="user">blaba@wildrunning.com</string>
 
     <string name="introducir_email">Introduce tu email</string>
     <string name="introducir_contraseña">Introduce tu contraseña</string>
@@ -25,4 +34,10 @@
     <string name="home">Home</string>
 
     <string name="wildBicicle">WildBicicle</string>
+    <string name="daysBike">4d 03:56:23</string>
+    <string name="distance">DISTANCE</string>
+    <string name="_30">30%</string>
+    <string name="_5_10">5/10</string>
+    <string name="runs">RUNS</string>
+    <string name="_4d_03_56_23">4d 03:56:23</string>
 </resources>
