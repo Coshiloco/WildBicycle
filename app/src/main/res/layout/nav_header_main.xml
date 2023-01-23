@@ -506,5 +506,18 @@
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
         </LinearLayout>
+        <TextView
+            android:id="@+id/tvUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="@string/user"/>
+
+        <TextView
+            android:id="@+id/tvHi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="@string/nav_hi"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
