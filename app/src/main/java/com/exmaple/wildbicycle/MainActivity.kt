@@ -64,6 +64,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         }
                         binding.drawerLayout.closeDrawer(GravityCompat.START)
                     }
+                    BaseViewModel.Navigate.Record -> {
+
+                    }
                     else -> {
                         Toast.makeText(
                             this@MainActivity,
@@ -72,6 +75,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         ).show()
                     }
                 }
+            }
+        }
+        errorMessage.observe(this@MainActivity) {
+            it.getContentIfNotHandled()?.let { mensajeError ->
+                Toast.makeText(this@MainActivity, mensajeError, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -123,6 +131,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         }
                     )
                 })
+                true
+            }
+            R.id.nav_item_record_drawer -> {
+                    viewModel.checkLoginToNavigateRecord()
                 true
             }
             else -> false

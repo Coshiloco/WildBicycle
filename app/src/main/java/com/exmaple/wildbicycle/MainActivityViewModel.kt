@@ -55,6 +55,20 @@ class MainActivityViewModel @Inject constructor(
 
     }
 
+    fun checkLoginToNavigateRecord() {
+        userManager.getUser { result ->
+            result.fold(
+                onSuccess = {
+                    _navigate.postValue(Event(Navigate.Record))
+                },
+                onFailure = {
+                    _errorMessage.postValue(Event(it.message ?: "Error en algun campo"))
+                }
+            )
+        }
+
+    }
+
     companion object {
         private const val WEB_CLIENT_ID =
             "111012438267-2tlousk8k6u925h5cc6jhbsj8eq7fear.apps.googleusercontent.com"

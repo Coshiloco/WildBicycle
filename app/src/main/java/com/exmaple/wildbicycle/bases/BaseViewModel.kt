@@ -19,6 +19,7 @@ open class BaseViewModel : ViewModel() {
 
     enum class Navigate {
         Login,
-        Home
+        Home,
+        Record
     }
 }

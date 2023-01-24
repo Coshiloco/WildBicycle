@@ -29,5 +29,9 @@
         android:id="@+id/recordFragment"
         android:name="com.exmaple.wildbicycle.ui.record.RecordFragment"
         android:label="fragment_record"
-        tools:layout="@layout/fragment_record" />
+        tools:layout="@layout/fragment_record" >
+        <action
+            android:id="@+id/action_recordFragment_to_nav_home_fragment"
+            app:destination="@id/nav_home_fragment" />
+    </fragment>
 </navigation>

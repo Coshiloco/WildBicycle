@@ -10,7 +10,9 @@ import com.exmaple.wildbicycle.BuildConfig
 import com.exmaple.wildbicycle.R
 import com.exmaple.wildbicycle.databinding.FragmentLoginBinding
 import com.exmaple.wildbicycle.databinding.FragmentRecordBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecordFragment : Fragment() {
 
     private lateinit var viewModel: RecordViewModel
