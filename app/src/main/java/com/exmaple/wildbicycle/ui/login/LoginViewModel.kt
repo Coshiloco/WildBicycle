@@ -106,7 +106,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun googleLogin(account: GoogleSignInAccount, context: Context) {
+    fun googleLogin(account: GoogleSignInAccount, callback: (Result<Boolean>) -> Unit) {
         userManager.googleLogin(account, { resultActionNavigate ->
             resultActionNavigate.fold(
                 onSuccess = {
@@ -119,15 +119,8 @@ class LoginViewModel @Inject constructor(
         }, { resultBBDDRegister ->
             resultBBDDRegister.fold(
                 onSuccess = {
-                    if (it) Toast.makeText(
-                        context, "El usuario se ha registrado con google por prime" +
-                                "ra vez", Toast.LENGTH_LONG
-                    ).show()
-                    else Toast.makeText(
-                        context,
-                        "El usuario ya esta registrado con google en la BBDD ",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    if (it) callback(Result.success(true))
+                    else callback(Result.success(false))
                 },
                 onFailure = {
 

@@ -42,7 +42,25 @@ class LoginFragment : Fragment() {
             result.checkResultAndExecute {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(data)
                 val account = task.getResult(ApiException::class.java)
-                viewModel.googleLogin(account, requireContext())
+                viewModel.googleLogin(account) { userRegisteredBBDD ->
+                    userRegisteredBBDD.fold(
+                        onSuccess = {
+                            if (it) Toast.makeText(
+                                requireContext(),
+                                "Se ha deslogeado con Google",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            else Toast.makeText(
+                                requireContext(),
+                                "No se ha deslogeado con Google",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        },
+                        onFailure = {
+
+                        }
+                    )
+                }
             }.onFailure { e ->
                 Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
