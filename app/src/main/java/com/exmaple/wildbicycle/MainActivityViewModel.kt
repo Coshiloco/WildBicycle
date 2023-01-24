@@ -28,7 +28,11 @@ class MainActivityViewModel @Inject constructor(
             .build()
     }
 
-    fun singOutUser(activity: MainActivity, callback: (Result<Boolean>) -> Unit, callbackGoogle: (Result<Boolean>) -> Unit) {
+    fun singOutUser(
+        activity: MainActivity,
+        callback: (Result<Boolean>) -> Unit,
+        callbackGoogle: (Result<Boolean>) -> Unit
+    ) {
         userManager.signOut { result ->
             result.fold(
                 onSuccess = {

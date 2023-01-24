@@ -1,7 +1,10 @@
 package com.exmaple.wildbicycle.ui.record
 
 import androidx.lifecycle.ViewModel
+import com.exmaple.wildbicycle.bases.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 
-class RecordViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+@HiltViewModel
+class RecordViewModel : BaseViewModel() {
+
 }

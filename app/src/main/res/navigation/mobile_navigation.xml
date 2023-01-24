@@ -21,5 +21,13 @@
         <action
             android:id="@+id/action_homeFragment_to_nav_login"
             app:destination="@id/nav_login" />
+        <action
+            android:id="@+id/action_nav_home_fragment_to_recordFragment"
+            app:destination="@id/recordFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/recordFragment"
+        android:name="com.exmaple.wildbicycle.ui.record.RecordFragment"
+        android:label="fragment_record"
+        tools:layout="@layout/fragment_record" />
 </navigation>

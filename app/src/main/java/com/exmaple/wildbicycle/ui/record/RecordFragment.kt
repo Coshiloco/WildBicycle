@@ -6,27 +6,37 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.exmaple.wildbicycle.BuildConfig
 import com.exmaple.wildbicycle.R
+import com.exmaple.wildbicycle.databinding.FragmentLoginBinding
+import com.exmaple.wildbicycle.databinding.FragmentRecordBinding
 
 class RecordFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = RecordFragment()
-    }
-
     private lateinit var viewModel: RecordViewModel
+    private lateinit var binding: FragmentRecordBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_record, container, false)
+        binding = FragmentRecordBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RecordViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setListeners()
+        setObservers()
+    }
+
+    private fun setObservers() {
+        TODO("Not yet implemented")
+    }
+
+    private fun setListeners() {
+
     }
 
 }
