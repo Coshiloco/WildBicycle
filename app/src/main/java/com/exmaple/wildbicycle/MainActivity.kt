@@ -1,6 +1,7 @@
 package com.exmaple.wildbicycle
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -14,6 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import com.exmaple.wildbicycle.bases.BaseViewModel
 import com.exmaple.wildbicycle.databinding.ActivityMainBinding
 import com.exmaple.wildbicycle.ui.home.HomeFragmentDirections
@@ -60,8 +62,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         HomeFragmentDirections.actionHomeFragmentToNavLogin().let { action ->
                             findNavController(R.id.nav_host_fragment_content_main).navigate(action)
                         }
+                        binding.drawerLayout.closeDrawer(GravityCompat.START)
                     }
-
                     else -> {
                         Toast.makeText(
                             this@MainActivity,
