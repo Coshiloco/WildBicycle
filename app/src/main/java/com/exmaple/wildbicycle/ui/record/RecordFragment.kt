@@ -34,7 +34,7 @@ class RecordFragment : Fragment() {
     }
 
     private fun setObservers() {
-        TODO("Not yet implemented")
+
     }
 
     private fun setListeners() {

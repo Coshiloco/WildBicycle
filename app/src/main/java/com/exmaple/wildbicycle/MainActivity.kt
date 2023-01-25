@@ -59,13 +59,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             it.getContentIfNotHandled()?.let { navigate ->
                 when (navigate) {
                     BaseViewModel.Navigate.Login -> {
-                        HomeFragmentDirections.actionHomeFragmentToNavLogin().let { action ->
-                            findNavController(R.id.nav_host_fragment_content_main).navigate(action)
-                        }
+                        findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.nav_login)
                         binding.drawerLayout.closeDrawer(GravityCompat.START)
                     }
                     BaseViewModel.Navigate.Record -> {
-
+                        HomeFragmentDirections.actionNavHomeFragmentToRecordFragment().let {
+                            action ->
+                            findNavController(R.id.nav_host_fragment_content_main).navigate(action)
+                        }
+                        binding.drawerLayout.closeDrawer(GravityCompat.START)
                     }
                     else -> {
                         Toast.makeText(
