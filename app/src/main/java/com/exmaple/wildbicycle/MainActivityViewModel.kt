@@ -66,7 +66,6 @@ class MainActivityViewModel @Inject constructor(
                 }
             )
         }
-
     }
 
     companion object {
